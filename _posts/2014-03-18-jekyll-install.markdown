@@ -9,7 +9,7 @@ If [github.com][github] wasn't awesome enough, they'll host your jekyll blogs fo
 
 First, [create github repo][github-new] called [msmithgu.github.io][msmithgu]
 
-Then, assuming I've got ruby 1.9+..
+Then, assuming ruby 1.9+..
 
 {% highlight bash %}
   gem install jekyll
