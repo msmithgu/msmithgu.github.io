@@ -2,7 +2,7 @@
 
 http://msmithgu.github.io/
 
-To setup:
+## Setup
 
     gem install jekyll
     jekyll new ~/git/msmithgu.github.io
@@ -14,10 +14,10 @@ To setup:
     git remote add origin git@github.com:msmithgu/msmithgu.github.io.git
     git push origin master
 
-To serve:
+## Serve
 
     jekyll serve
 
-To auto-build:
+## Auto-build
 
     jekyll build -w
