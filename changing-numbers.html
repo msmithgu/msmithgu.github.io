@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Tangle document</title>
+
+    <style type="text/css">
+      body {
+        font-family: sans-serif;
+        font-size: 18px;
+        padding: 1em;
+        margin: 1em;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 0.5em;
+        border: 1px solid gray;
+        text-align: right;
+        vertical-align: top;
+      }
+    </style>
+
+
+    <!-- Tangle -->
+    <script type="text/javascript" src="/contrib/Tangle.js"></script>
+
+    <!-- TangleKit (optional) -->
+    <link rel="stylesheet" href="/contrib/TangleKit/TangleKit.css" type="text/css">
+    <script type="text/javascript" src="/contrib/TangleKit/mootools.js"></script>
+    <script type="text/javascript" src="/contrib/TangleKit/sprintf.js"></script>
+    <script type="text/javascript" src="/contrib/TangleKit/BVTouchable.js"></script>
+    <script type="text/javascript" src="/contrib/TangleKit/TangleKit.js"></script>
+
+    <!-- example -->
+    <script type="text/javascript">
+      function setUpTangle () {
+        var wageTangle = new Tangle(document.getElementById("wage"), {
+          initialize: function () {
+            this.wage = 13;
+            this.hoursPerDay = 6;
+            this.daysPerWeek = 5;
+            this.withholding = 15;
+          },
+          update: function () {
+            this.hoursPerWeek = this.hoursPerDay * this.daysPerWeek;
+            this.hoursPerMonth = this.hoursPerWeek * 4;
+            this.dailyGross = this.wage * this.hoursPerDay;
+            this.weeklyGross = this.wage * this.hoursPerWeek;
+            this.monthlyGross = this.wage * this.hoursPerMonth;
+            this.yearlyGross = this.wage * this.hoursPerMonth * 12;
+            this.dailyNet = this.dailyGross * (1 - (this.withholding / 100.0));
+            this.weeklyNet = this.weeklyGross * (1 - (this.withholding / 100.0));
+            this.monthlyNet = this.monthlyGross * (1 - (this.withholding / 100.0));
+            this.yearlyNet = this.yearlyGross * (1 - (this.withholding / 100.0));
+            this.dailyWithheld = this.dailyGross - this.dailyNet;
+            this.weeklyWithheld = this.weeklyGross - this.weeklyNet;
+            this.monthlyWithheld = this.monthlyGross - this.monthlyNet;
+            this.yearlyWithheld = this.yearlyGross - this.yearlyNet;
+          }
+        });
+        var gasTangle = new Tangle(document.getElementById("gas"), {
+          initialize: function () {
+            this.pricePerGallon = 3;
+            this.milesPerGallon = 16;
+            this.milesPerDay = 40;
+          },
+          update: function () {
+            this.gallonsPerDay = (this.milesPerDay / this.milesPerGallon)
+            this.costPerDay = this.gallonsPerDay * this.pricePerGallon;
+            this.costPerWeek = this.costPerDay * 7;
+            this.costPerMonth = this.costPerWeek * 4;
+            this.costPerYear = this.costPerMonth * 12;
+          }
+        });
+      }
+    </script>
+  </head>
+
+  <body onload="setUpTangle();">
+
+    <h1>Changing Numbers</h1>
+
+    <p>There are systems of numbers all around us, deeply affecting our lives. Little changes can have big impacts, and sometimes not what you would expect.</p>
+
+    <div id="wage">
+      <h2>Wages</h2>
+      <p>If an employer pays <span data-var="wage" class="TKAdjustableNumber" data-min="7" data-max="40"> dollars an hour</span>,
+      for <span data-var="hoursPerDay" class="TKAdjustableNumber" data-min="0" data-max="16"> hours per day</span>,
+      <span data-var="daysPerWeek" class="TKAdjustableNumber" data-min="0" data-max="7"> days per week</span>,
+      figuring <span data-var="withholding" class="TKAdjustableNumber" data-min="0" data-max="30">% withholding</span>:</p>
+      <table>
+        <tr>
+          <th></th>
+          <th>Employer pays <br /> (gross)</th>
+          <th>Withheld</th>
+          <th>Employee receives <br /> (net)</th>
+        </tr>
+        <tr>
+          <th>per day</th>
+          <td>$<span data-var="dailyGross" data-format="%.2f"></span></td>
+          <td>$<span data-var="dailyWithheld" data-format="%.2f"></span></td>
+          <td>$<span data-var="dailyNet" data-format="%.2f"></span></td>
+        </tr>
+        <tr>
+          <th>per week</th>
+          <td>$<span data-var="weeklyGross" data-format="%.2f"></span></td>
+          <td>$<span data-var="weeklyWithheld" data-format="%.2f"></span></td>
+          <td>$<span data-var="weeklyNet" data-format="%.2f"></span></td>
+        </tr>
+        <tr>
+          <th>per month</th>
+          <td>$<span data-var="monthlyGross" data-format="%.2f"></span></td>
+          <td>$<span data-var="monthlyWithheld" data-format="%.2f"></span></td>
+          <td>$<span data-var="monthlyNet" data-format="%.2f"></span></td>
+        </tr>
+        <tr>
+          <th>per year</th>
+          <td>$<span data-var="yearlyGross" data-format="%.2f"></span></td>
+          <td>$<span data-var="yearlyWithheld" data-format="%.2f"></span></td>
+          <td>$<span data-var="yearlyNet" data-format="%.2f"></span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="gas">
+      <h2>Gas</h2>
+      <p>If you buy gas for $<span data-var="pricePerGallon" class="TKAdjustableNumber" data-min=".5" data-max="10"> per gallon</span>,
+      and your car gets <span data-var="milesPerGallon" class="TKAdjustableNumber" data-min="1" data-max="100"> miles per gallon</span>,
+      averaging <span data-var="milesPerDay" class="TKAdjustableNumber" data-min="5" data-max="200"> miles per day</span>
+      will take <span data-var="gallonsPerDay" data-format="%.2f"> gallons per day</span>
+      and cost you <br />$<span data-var="costPerDay" data-format="%.2f"> per day</span>.</p>
+      <p>$<span data-var="costPerWeek" data-format="%.2f"> per week</span>.</p>
+      <p>$<span data-var="costPerMonth" data-format="%.2f"> per month</span>.</p>
+      <p>$<span data-var="costPerYear" data-format="%.2f"> per year</span>.</p>
+    </div>
+
+  </body>
+</html>
