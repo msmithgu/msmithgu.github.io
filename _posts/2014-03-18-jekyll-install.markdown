@@ -7,7 +7,7 @@ categories: jekyll update
 
 If [github.com][github] wasn't awesome enough, they'll host your jekyll blogs for free.
 
-First, [create github repo][github-new] called [msmithgu.github.io][msmithgu]
+First, [create github repo][github-new] called [msmithgu.github.io][msmithgu].
 
 Then, assuming ruby 1.9+..
 
