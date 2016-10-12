@@ -7,6 +7,7 @@ http://msmithgu.github.io/
     gem install jekyll
     jekyll new ~/git/msmithgu.github.io
     cd ~/git/msmithgu.github.io
+    bundle install
     git init
     touch README
     git add .
@@ -16,8 +17,4 @@ http://msmithgu.github.io/
 
 ## Serve
 
-    jekyll serve
-
-## Auto-build
-
-    jekyll build -w
+    bundle exec jekyll serve
