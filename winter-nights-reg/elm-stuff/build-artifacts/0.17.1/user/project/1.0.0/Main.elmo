@@ -1,0 +1,1157 @@
+var _user$project$Main$gettingFood = function (_p0) {
+	var _p1 = _p0;
+	return _elm_lang$core$Native_Utils.eq(_p1.gettingFood, true);
+};
+var _user$project$Main$radio = F3(
+	function (value, isChecked, msg) {
+		return A2(
+			_elm_lang$html$Html$label,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$classList(
+					_elm_lang$core$Native_List.fromArray(
+						[
+							{ctor: '_Tuple2', _0: 'radio-label', _1: true},
+							{ctor: '_Tuple2', _0: 'radio-label-selected', _1: isChecked}
+						]))
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$input,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$type$('radio'),
+							_elm_lang$html$Html_Attributes$checked(isChecked),
+							_elm_lang$html$Html_Events$onClick(msg)
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[])),
+					_elm_lang$html$Html$text(value)
+				]));
+	});
+var _user$project$Main$css = function (path) {
+	return A3(
+		_elm_lang$html$Html$node,
+		'link',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$rel('stylesheet'),
+				_elm_lang$html$Html_Attributes$href(path)
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _user$project$Main$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {email: a, personUid: b, attendees: c, camping: d, electricity: e, weekendOnly: f};
+	});
+var _user$project$Main$emptyModel = A6(
+	_user$project$Main$Model,
+	'',
+	0,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	false,
+	false,
+	false);
+var _user$project$Main$Person = F6(
+	function (a, b, c, d, e, f) {
+		return {id: a, name: b, ageGroup: c, gettingFood: d, glutenFree: e, vegetarian: f};
+	});
+var _user$project$Main$Adult = {ctor: 'Adult'};
+var _user$project$Main$newPerson = function (id) {
+	return A6(_user$project$Main$Person, id, '', _user$project$Main$Adult, false, false, false);
+};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p2 = msg;
+		switch (_p2.ctor) {
+			case 'NoOp':
+				return model;
+			case 'UpdateEmail':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{email: _p2._0});
+			case 'ToggleCamping':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						camping: _elm_lang$core$Basics$not(model.camping)
+					});
+			case 'ToggleElectricity':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						electricity: _elm_lang$core$Basics$not(model.electricity)
+					});
+			case 'ToggleWeekendOnly':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						weekendOnly: _elm_lang$core$Basics$not(model.weekendOnly)
+					});
+			case 'AddPerson':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						attendees: A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_user$project$Main$newPerson(model.personUid)
+								]),
+							model.attendees),
+						personUid: model.personUid + 1
+					});
+			case 'Delete':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						attendees: A2(
+							_elm_lang$core$List$filter,
+							function (t) {
+								return !_elm_lang$core$Native_Utils.eq(t.id, _p2._0);
+							},
+							model.attendees)
+					});
+			case 'UpdatePersonName':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						attendees: A2(
+							_elm_lang$core$List$map,
+							function (t) {
+								return _elm_lang$core$Native_Utils.eq(t.id, _p2._0) ? _elm_lang$core$Native_Utils.update(
+									t,
+									{name: _p2._1}) : t;
+							},
+							model.attendees)
+					});
+			case 'UpdatePersonAgeGroup':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						attendees: A2(
+							_elm_lang$core$List$map,
+							function (t) {
+								return _elm_lang$core$Native_Utils.eq(t.id, _p2._0) ? _elm_lang$core$Native_Utils.update(
+									t,
+									{ageGroup: _p2._1}) : t;
+							},
+							model.attendees)
+					});
+			case 'ToggleFood':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						attendees: A2(
+							_elm_lang$core$List$map,
+							function (t) {
+								return _elm_lang$core$Native_Utils.eq(t.id, _p2._0) ? _elm_lang$core$Native_Utils.update(
+									t,
+									{
+										gettingFood: _elm_lang$core$Basics$not(t.gettingFood)
+									}) : t;
+							},
+							model.attendees)
+					});
+			case 'ToggleGlutenFree':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						attendees: A2(
+							_elm_lang$core$List$map,
+							function (t) {
+								return _elm_lang$core$Native_Utils.eq(t.id, _p2._0) ? _elm_lang$core$Native_Utils.update(
+									t,
+									{
+										glutenFree: _elm_lang$core$Basics$not(t.glutenFree)
+									}) : t;
+							},
+							model.attendees)
+					});
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						attendees: A2(
+							_elm_lang$core$List$map,
+							function (t) {
+								return _elm_lang$core$Native_Utils.eq(t.id, _p2._0) ? _elm_lang$core$Native_Utils.update(
+									t,
+									{
+										vegetarian: _elm_lang$core$Basics$not(t.vegetarian)
+									}) : t;
+							},
+							model.attendees)
+					});
+		}
+	});
+var _user$project$Main$ageString = function (ageGroup) {
+	return _elm_lang$core$Native_Utils.eq(ageGroup, _user$project$Main$Adult) ? '' : A2(
+		_elm_lang$core$Basics_ops['++'],
+		' (',
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			_elm_lang$core$Basics$toString(ageGroup),
+			')'));
+};
+var _user$project$Main$isAdult = function (_p3) {
+	var _p4 = _p3;
+	return _elm_lang$core$Native_Utils.eq(_p4.ageGroup, _user$project$Main$Adult);
+};
+var _user$project$Main$Youth = {ctor: 'Youth'};
+var _user$project$Main$isYouth = function (_p5) {
+	var _p6 = _p5;
+	return _elm_lang$core$Native_Utils.eq(_p6.ageGroup, _user$project$Main$Youth);
+};
+var _user$project$Main$Child = {ctor: 'Child'};
+var _user$project$Main$isChild = function (_p7) {
+	var _p8 = _p7;
+	return _elm_lang$core$Native_Utils.eq(_p8.ageGroup, _user$project$Main$Child);
+};
+var _user$project$Main$Toddler = {ctor: 'Toddler'};
+var _user$project$Main$testModel = A6(
+	_user$project$Main$Model,
+	'msmithgu@gmail.com',
+	7,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A6(_user$project$Main$Person, 0, 'Mark Smith', _user$project$Main$Adult, true, false, false),
+			A6(_user$project$Main$Person, 1, 'Kelly Smith', _user$project$Main$Adult, true, true, false),
+			A6(_user$project$Main$Person, 2, 'Dylan Wade', _user$project$Main$Adult, false, false, true),
+			A6(_user$project$Main$Person, 3, 'Z', _user$project$Main$Youth, true, false, false),
+			A6(_user$project$Main$Person, 4, 'Eilidh', _user$project$Main$Child, true, true, true),
+			A6(_user$project$Main$Person, 5, 'Ethan', _user$project$Main$Toddler, true, true, false),
+			A6(_user$project$Main$Person, 6, 'Ezri', _user$project$Main$Toddler, true, false, false)
+		]),
+	true,
+	true,
+	true);
+var _user$project$Main$model = _user$project$Main$testModel;
+var _user$project$Main$viewResults = function (model) {
+	var mealPlansWithDietaryRestrictions = _elm_lang$core$List$length(
+		A2(
+			_elm_lang$core$List$filter,
+			function (attendee) {
+				return attendee.gettingFood && (attendee.glutenFree || attendee.vegetarian);
+			},
+			model.attendees));
+	var mealPlans = _elm_lang$core$List$length(
+		A2(
+			_elm_lang$core$List$filter,
+			function (person) {
+				return person.gettingFood;
+			},
+			model.attendees));
+	var numToddlers = _elm_lang$core$List$length(
+		A2(
+			_elm_lang$core$List$filter,
+			function (attendee) {
+				return _elm_lang$core$Native_Utils.eq(attendee.ageGroup, _user$project$Main$Toddler);
+			},
+			model.attendees));
+	var numChildren = _elm_lang$core$List$length(
+		A2(
+			_elm_lang$core$List$filter,
+			function (attendee) {
+				return _elm_lang$core$Native_Utils.eq(attendee.ageGroup, _user$project$Main$Child);
+			},
+			model.attendees));
+	var numYouth = _elm_lang$core$List$length(
+		A2(
+			_elm_lang$core$List$filter,
+			function (attendee) {
+				return _elm_lang$core$Native_Utils.eq(attendee.ageGroup, _user$project$Main$Youth);
+			},
+			model.attendees));
+	var numAdults = _elm_lang$core$List$length(
+		A2(
+			_elm_lang$core$List$filter,
+			function (attendee) {
+				return _elm_lang$core$Native_Utils.eq(attendee.ageGroup, _user$project$Main$Adult);
+			},
+			model.attendees));
+	var numAttendees = _elm_lang$core$List$length(model.attendees);
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('reg-results')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$table,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Your Email')
+									])),
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(model.email)
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Weekend only?')
+									])),
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(model.weekendOnly))
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Campsite?')
+									])),
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(model.camping))
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Campsite with electricity?')
+									])),
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(model.camping && model.electricity))
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Adults')
+									])),
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(numAdults))
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Youth')
+									])),
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(numYouth))
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Children')
+									])),
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(numChildren))
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Toddlers')
+									])),
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(numToddlers))
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Meal plans')
+									])),
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(mealPlans))
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$tr,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Meal plans with dietary restrictions')
+									])),
+								A2(
+								_elm_lang$html$Html$td,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(mealPlansWithDietaryRestrictions))
+									]))
+							]))
+					]))
+			]));
+};
+var _user$project$Main$isToddler = function (_p9) {
+	var _p10 = _p9;
+	return _elm_lang$core$Native_Utils.eq(_p10.ageGroup, _user$project$Main$Toddler);
+};
+var _user$project$Main$ToggleVegetarian = function (a) {
+	return {ctor: 'ToggleVegetarian', _0: a};
+};
+var _user$project$Main$ToggleGlutenFree = function (a) {
+	return {ctor: 'ToggleGlutenFree', _0: a};
+};
+var _user$project$Main$ToggleFood = function (a) {
+	return {ctor: 'ToggleFood', _0: a};
+};
+var _user$project$Main$UpdatePersonAgeGroup = F2(
+	function (a, b) {
+		return {ctor: 'UpdatePersonAgeGroup', _0: a, _1: b};
+	});
+var _user$project$Main$UpdatePersonName = F2(
+	function (a, b) {
+		return {ctor: 'UpdatePersonName', _0: a, _1: b};
+	});
+var _user$project$Main$AddPerson = {ctor: 'AddPerson'};
+var _user$project$Main$Delete = function (a) {
+	return {ctor: 'Delete', _0: a};
+};
+var _user$project$Main$viewPersonRow = function (person) {
+	return A2(
+		_elm_lang$html$Html$tr,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('name-col')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$td,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$button,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('destroy'),
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Main$Delete(person.id))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('X')
+							])),
+						A2(
+						_elm_lang$html$Html$input,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$type$('text'),
+								_elm_lang$html$Html_Attributes$class('name'),
+								_elm_lang$html$Html_Attributes$placeholder('Name here'),
+								_elm_lang$html$Html_Attributes$value(person.name),
+								_elm_lang$html$Html_Events$onInput(
+								_user$project$Main$UpdatePersonName(person.id))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[]))
+					])),
+				A2(
+				_elm_lang$html$Html$td,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('age-col')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$ul,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('radio')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$li,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A3(
+										_user$project$Main$radio,
+										'Adult',
+										_user$project$Main$isAdult(person),
+										A2(_user$project$Main$UpdatePersonAgeGroup, person.id, _user$project$Main$Adult))
+									])),
+								A2(
+								_elm_lang$html$Html$li,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A3(
+										_user$project$Main$radio,
+										'Youth',
+										_user$project$Main$isYouth(person),
+										A2(_user$project$Main$UpdatePersonAgeGroup, person.id, _user$project$Main$Youth))
+									])),
+								A2(
+								_elm_lang$html$Html$li,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A3(
+										_user$project$Main$radio,
+										'Child',
+										_user$project$Main$isChild(person),
+										A2(_user$project$Main$UpdatePersonAgeGroup, person.id, _user$project$Main$Child))
+									])),
+								A2(
+								_elm_lang$html$Html$li,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A3(
+										_user$project$Main$radio,
+										'Toddler',
+										_user$project$Main$isToddler(person),
+										A2(_user$project$Main$UpdatePersonAgeGroup, person.id, _user$project$Main$Toddler))
+									]))
+							]))
+					])),
+				A2(
+				_elm_lang$html$Html$td,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('food-col')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$input,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('toggle'),
+								_elm_lang$html$Html_Attributes$type$('checkbox'),
+								_elm_lang$html$Html_Attributes$checked(person.gettingFood),
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Main$ToggleFood(person.id))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[]))
+					])),
+				A2(
+				_elm_lang$html$Html$td,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$classList(
+						_elm_lang$core$Native_List.fromArray(
+							[
+								{ctor: '_Tuple2', _0: 'gluten-col', _1: true}
+							]))
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$input,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$classList(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'toggle', _1: true},
+										{
+										ctor: '_Tuple2',
+										_0: 'hide',
+										_1: _elm_lang$core$Basics$not(person.gettingFood)
+									}
+									])),
+								_elm_lang$html$Html_Attributes$type$('checkbox'),
+								_elm_lang$html$Html_Attributes$checked(person.glutenFree),
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Main$ToggleGlutenFree(person.id))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[]))
+					])),
+				A2(
+				_elm_lang$html$Html$td,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$classList(
+						_elm_lang$core$Native_List.fromArray(
+							[
+								{ctor: '_Tuple2', _0: 'vegetarian-col', _1: true}
+							]))
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$input,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$classList(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'toggle', _1: true},
+										{
+										ctor: '_Tuple2',
+										_0: 'hide',
+										_1: _elm_lang$core$Basics$not(person.gettingFood)
+									}
+									])),
+								_elm_lang$html$Html_Attributes$type$('checkbox'),
+								_elm_lang$html$Html_Attributes$checked(person.vegetarian),
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Main$ToggleVegetarian(person.id))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[]))
+					]))
+			]));
+};
+var _user$project$Main$viewKeyedPerson = function (person) {
+	return {
+		ctor: '_Tuple2',
+		_0: _elm_lang$core$Basics$toString(person.id),
+		_1: A2(_elm_lang$html$Html_Lazy$lazy, _user$project$Main$viewPersonRow, person)
+	};
+};
+var _user$project$Main$viewAttendees = function (persons) {
+	return A2(
+		_elm_lang$html$Html$section,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('persons-container')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$button,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Events$onClick(_user$project$Main$AddPerson)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Add person')
+					])),
+				A2(
+				_elm_lang$html$Html$table,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('persons')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$thead,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$tr,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_elm_lang$html$Html$th,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('name-col')
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text('Name')
+											])),
+										A2(
+										_elm_lang$html$Html$th,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('age-col')
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text('Age Group')
+											])),
+										A2(
+										_elm_lang$html$Html$th,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('food-col')
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text('Food?')
+											])),
+										A2(
+										_elm_lang$html$Html$th,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('gluten-col')
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text('Gluten Free?')
+											])),
+										A2(
+										_elm_lang$html$Html$th,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('vegetarian-col')
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text('Vegetarian')
+											]))
+									]))
+							])),
+						A3(
+						_elm_lang$html$Html_Keyed$node,
+						'tbody',
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('persons')
+							]),
+						A2(_elm_lang$core$List$map, _user$project$Main$viewKeyedPerson, persons))
+					]))
+			]));
+};
+var _user$project$Main$viewPersonListElement = function (person) {
+	return A2(
+		_elm_lang$html$Html$li,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('person')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$button,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('destroy'),
+						_elm_lang$html$Html_Events$onClick(
+						_user$project$Main$Delete(person.id))
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('X')
+					])),
+				A2(
+				_elm_lang$html$Html$input,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('text'),
+						_elm_lang$html$Html_Attributes$class('name'),
+						_elm_lang$html$Html_Attributes$placeholder('Name here'),
+						_elm_lang$html$Html_Attributes$value(person.name),
+						_elm_lang$html$Html_Events$onInput(
+						_user$project$Main$UpdatePersonName(person.id))
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$ul,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('radio')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$li,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A3(
+								_user$project$Main$radio,
+								'Adult',
+								_user$project$Main$isAdult(person),
+								A2(_user$project$Main$UpdatePersonAgeGroup, person.id, _user$project$Main$Adult))
+							])),
+						A2(
+						_elm_lang$html$Html$li,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A3(
+								_user$project$Main$radio,
+								'Youth',
+								_user$project$Main$isYouth(person),
+								A2(_user$project$Main$UpdatePersonAgeGroup, person.id, _user$project$Main$Youth))
+							])),
+						A2(
+						_elm_lang$html$Html$li,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A3(
+								_user$project$Main$radio,
+								'Child',
+								_user$project$Main$isChild(person),
+								A2(_user$project$Main$UpdatePersonAgeGroup, person.id, _user$project$Main$Child))
+							])),
+						A2(
+						_elm_lang$html$Html$li,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A3(
+								_user$project$Main$radio,
+								'Toddler',
+								_user$project$Main$isToddler(person),
+								A2(_user$project$Main$UpdatePersonAgeGroup, person.id, _user$project$Main$Toddler))
+							]))
+					]))
+			]));
+};
+var _user$project$Main$ToggleWeekendOnly = {ctor: 'ToggleWeekendOnly'};
+var _user$project$Main$ToggleCamping = {ctor: 'ToggleCamping'};
+var _user$project$Main$ToggleElectricity = {ctor: 'ToggleElectricity'};
+var _user$project$Main$UpdateEmail = function (a) {
+	return {ctor: 'UpdateEmail', _0: a};
+};
+var _user$project$Main$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('reg-container clearfix')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$css('style.css'),
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('clearfix')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$style(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'text-align', _1: 'right'}
+									]))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$button,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$style(
+										_elm_lang$core$Native_List.fromArray(
+											[
+												{ctor: '_Tuple2', _0: 'margin', _1: '1em'}
+											]))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('<')
+									])),
+								A2(
+								_elm_lang$html$Html$button,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$style(
+										_elm_lang$core$Native_List.fromArray(
+											[
+												{ctor: '_Tuple2', _0: 'margin', _1: '1em'}
+											]))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('>')
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$section,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('reg-form')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$label,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('clearfix')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Your Email'),
+										A2(
+										_elm_lang$html$Html$input,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$style(
+												_elm_lang$core$Native_List.fromArray(
+													[
+														{ctor: '_Tuple2', _0: 'float', _1: 'right'}
+													])),
+												_elm_lang$html$Html_Attributes$type$('text'),
+												_elm_lang$html$Html_Attributes$placeholder('you@example.net'),
+												_elm_lang$html$Html_Attributes$value(model.email),
+												_elm_lang$html$Html_Events$onInput(_user$project$Main$UpdateEmail)
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[]))
+									])),
+								A2(
+								_elm_lang$html$Html$label,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('clearfix')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Attending for the weekend only?'),
+										A2(
+										_elm_lang$html$Html$input,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('toggle'),
+												_elm_lang$html$Html_Attributes$type$('checkbox'),
+												_elm_lang$html$Html_Attributes$checked(model.weekendOnly),
+												_elm_lang$html$Html_Events$onClick(_user$project$Main$ToggleWeekendOnly)
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[]))
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$section,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('reg-form')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$label,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('clearfix')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Camping with us?'),
+										A2(
+										_elm_lang$html$Html$input,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('toggle'),
+												_elm_lang$html$Html_Attributes$type$('checkbox'),
+												_elm_lang$html$Html_Attributes$checked(model.camping),
+												_elm_lang$html$Html_Events$onClick(_user$project$Main$ToggleCamping)
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[]))
+									])),
+								A2(
+								_elm_lang$html$Html$label,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$classList(
+										_elm_lang$core$Native_List.fromArray(
+											[
+												{ctor: '_Tuple2', _0: 'clearfix', _1: true},
+												{
+												ctor: '_Tuple2',
+												_0: 'hide',
+												_1: _elm_lang$core$Basics$not(model.camping)
+											}
+											]))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Need a camp site with electricity?'),
+										A2(
+										_elm_lang$html$Html$input,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('toggle'),
+												_elm_lang$html$Html_Attributes$type$('checkbox'),
+												_elm_lang$html$Html_Attributes$checked(model.electricity),
+												_elm_lang$html$Html_Events$onClick(_user$project$Main$ToggleElectricity)
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[]))
+									]))
+							])),
+						A2(_elm_lang$html$Html_Lazy$lazy, _user$project$Main$viewAttendees, model.attendees),
+						A2(
+						_elm_lang$html$Html$section,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('reg-results-container clearfix')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_user$project$Main$viewResults(model)
+							]))
+					]))
+			]));
+};
+var _user$project$Main$main = {
+	main: _elm_lang$html$Html_App$beginnerProgram(
+		{model: _user$project$Main$model, view: _user$project$Main$view, update: _user$project$Main$update})
+};
+var _user$project$Main$NoOp = {ctor: 'NoOp'};

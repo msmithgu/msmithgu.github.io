@@ -1,0 +1,4 @@
+var _user$project$Wizard$Model = F5(
+	function (a, b, c, d, e) {
+		return {zero: a, step: b, $default: c, prev: d, next: e};
+	});

@@ -1,0 +1,173 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-family: sans-serif;
+  background: #333;
+}
+
+section {
+  border: 3px dashed green;
+  margin-bottom: 1em;
+}
+section:last-child {
+  margin-bottom: 0;
+}
+
+.hide {
+  display: none!important;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.reg-container {
+  margin: 20px;
+  width: 820px;
+  background: white;
+}
+
+.reg-form label {
+  display: block;
+  clear: both;
+  padding: 1em;
+  border-bottom: 1px solid black;
+}
+
+.reg-form label:last-child {
+  border-bottom: none;
+}
+
+.reg-form label input,
+.reg-form label textarea {
+  float: right;
+  padding: 0.5em;
+  width: 250px;
+  border: 1px solid black;
+}
+
+.reg-form label textarea {
+  height: 5em;
+}
+
+.person-list-container {
+  width: 49%;
+  float: left;
+}
+
+.reg-results-container {
+  width: 480px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #eee;
+}
+
+ul.person-list {
+  margin: 0;
+  padding: 1em;
+}
+
+ul.person-list > li.person {
+  display: block;
+  list-style: none;
+  border: 1px solid gray;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+ul.radio {
+  margin: 1em 0 0 0;
+  padding: 0;
+}
+
+ul.radio:first-child {
+  margin: 0;
+}
+
+ul.radio > li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 1em;
+}
+
+ul.radio > li:last-child {
+  margin-right: 0;
+}
+
+.radio-label {
+  font-size: 0.75em;
+  padding: 0.25em 0.5em;
+  color: gray;
+}
+
+.radio-label:hover {
+  cursor: pointer;
+}
+
+.radio-label-selected {
+  background: #3d81f5;
+  color: white;
+  border-radius: 5px;
+}
+
+.radio-label > input {
+  display: none;
+}
+
+.persons-container {
+  padding: 1em;
+}
+
+table {
+  width: 100%;
+}
+
+table.persons {
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+table.persons th {
+  padding: 0.5em 1em;
+}
+
+table.persons td {
+  border: 1px solid black;
+  padding: 0.5em 1em;
+}
+
+table.persons td .destroy {
+  margin: 0 1em 0 0;
+  color: gray;
+  font-weight: bold;
+  font-size: 0.75em;
+}
+
+li.person .destroy {
+  float: right;
+}
+
+.person input.name {
+  font-size: 1em;
+  padding: 0.25em;
+}
+
+.reg-results {
+  padding: 1em;
+}
+
+.reg-results table {
+  border-collapse: collapse;
+}
+
+.reg-results table td {
+  border: 1px solid gray;
+  padding: 0.5em;
+}
