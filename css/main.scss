@@ -37,3 +37,15 @@ $on-laptop:        800px;
 
 // Import partials from the `minima` theme.
 @import "minima";
+
+.site > div {
+  padding: 1em;
+}
+
+.header {
+  border-bottom: 1px solid #ccc;
+}
+
+.footer {
+  border-top: 1px solid #ccc;
+}
