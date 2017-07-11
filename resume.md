@@ -20,7 +20,7 @@ Mark is a software engineer with over a decade of experience. A quick learner wh
 
 **Operating Systems**: OSX, Linux, BSD variants
 
-**Interests**: Mathematics, Woodworking, Games, Puzzles, Martial Arts, Juggling
+**Interests**: Mathematics, Woodworking, Games, Puzzles, Martial Arts, Juggling, Speedcubing
 
 # Experience
 
