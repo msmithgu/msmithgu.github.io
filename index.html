@@ -23,6 +23,14 @@
       .contact {
         margin-top: 20px;
       }
+      @media print {
+        .contact a[href]:after {
+          content: none !important;
+        }
+        .no-print {
+          display: none !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -37,7 +45,8 @@
           U.S. Citizen<br />
           (571) 228-8479<br />
           <a href="mailto:msmithgu@gmail.com">msmithgu@gmail.com</a><br />
-          <a href="github.com/msmithgu">github.com/msmithgu</a>
+          <a href="github.com/msmithgu">github.com/msmithgu</a><br />
+          <a class="no-print" href="https://www.linkedin.com/in/mark-smith-guerrero/">linkedin.com</a>
         </div>
       </div>
 
@@ -80,12 +89,6 @@
           content migration, website building, and theming. Provided network
           troubleshooting and customer training.</p>
 
-          <h2>education</h2>
-          <h3>George Mason University, <small>Fairfax, VA — BS Economics, Math, Computer Science</small></h3>
-          <p class="dates">Graduated 2007</p>
-          <p>Activities and Societies: Chess Club (founding member), Go Club,
-          Robotics Club, Wing Chun</p>
-
           <h2>projects</h2>
           <h3>Open Source Contributor <small>— Various</small></h3>
           <p>Where possible, contributed code for open-source projects including
@@ -100,6 +103,12 @@
           another for video answers to twitter questions to the Press Secretary.
           Both web applications had to have easy to use administrative backends
           and also snappy, massively scalable frontends.</p>
+
+          <h2 style="page-break-before: always">education</h2>
+          <h3>George Mason University, <small>Fairfax, VA — BS Economics, Math, Computer Science</small></h3>
+          <p class="dates">Graduated 2007</p>
+          <p>Activities and Societies: Chess Club (founding member), Go Club,
+          Robotics Club, Wing Chun</p>
         </div>
         <div class="col-xs-4">
           <h2>tools</h2>
