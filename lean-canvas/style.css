@@ -1,0 +1,83 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+h2 {
+  font-size: 1.2em;
+}
+
+.lc {
+  background: #eee;
+  font-family: sans-serif;
+  display: grid;
+  grid-template-rows: 75% 25%;
+  height: 100%;
+  break-inside: avoid;
+  font-size: 14px;
+}
+
+.lc-top {
+  border-bottom: 1px solid black;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.lc-top > div {
+  grid-column-start: auto;
+  border-right: 1px solid black;
+  padding: 1em;
+  display: grid;
+  grid-template-rows: 75% 25%;
+}
+
+.lc-top > div:last-child {
+  border-right: none;
+}
+
+div.lc-double {
+  display: grid;
+  grid-template-rows: 50% 50%;
+  padding: 0;
+}
+
+.lc-double > div {
+  border-bottom: 1px solid black;
+  padding: 1em;
+}
+
+.lc-double > div:last-child {
+  border-bottom: none;
+}
+
+.lc-bottom {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.lc-bottom > div {
+  grid-column-start: auto;
+  border-right: 1px solid black;
+  padding: 1em;
+}
+
+.lc-bottom > div:last-child {
+  border-right: none;
+}
+
+.lc-col {
+  border-right: 1px solid black;
+}
+
+.lc .instructions {
+  color: #999;
+  font-style: italic;
+}
