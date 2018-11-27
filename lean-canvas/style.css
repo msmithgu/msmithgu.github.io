@@ -1,6 +1,12 @@
+@page {
+  size: auto;
+  margin: 0;
+}
+
 html, body {
   margin: 0;
   padding: 0;
+  font-size: 12pt;
 }
 
 h1, h2 {
@@ -23,7 +29,6 @@ h2 {
   grid-template-rows: 75vh 25vh;
   height: 100%;
   break-inside: avoid;
-  font-size: 14px;
 }
 
 .lc-top {
@@ -81,6 +86,7 @@ div.lc-double {
 }
 
 .lc .instructions {
-  color: #999;
+  color: #bbb;
+  font-size: .8em;
   font-style: italic;
 }
