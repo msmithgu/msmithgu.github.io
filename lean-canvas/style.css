@@ -19,13 +19,14 @@ h2 {
   background: #eee;
   font-family: sans-serif;
   display: grid;
-  grid-template-rows: 75% 25%;
+  grid-template-rows: 75vh 25vh;
   height: 100%;
   break-inside: avoid;
   font-size: 14px;
 }
 
 .lc-top {
+  grid-row-start: auto;
   border-bottom: 1px solid black;
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
@@ -59,6 +60,7 @@ div.lc-double {
 }
 
 .lc-bottom {
+  grid-row-start: auto;
   display: grid;
   grid-template-columns: 50% 50%;
 }
