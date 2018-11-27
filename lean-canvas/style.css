@@ -16,8 +16,9 @@ h2 {
 }
 
 .lc {
-  background: #eee;
+  background: white;
   font-family: sans-serif;
+  color: black;
   display: grid;
   grid-template-rows: 75vh 25vh;
   height: 100%;
