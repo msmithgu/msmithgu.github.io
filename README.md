@@ -1,6 +1,6 @@
 # msmithgu.github.io
 
-http://msmithgu.github.io/
+https://msmithgu.github.io/
 
 ## Setup
 
