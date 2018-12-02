@@ -1,0 +1,45 @@
+body {
+  font-size: 22px;
+}
+dl {
+}
+dt {
+  clear: left;
+  float: left;
+  margin-right: 1em;
+  display: block;
+}
+dd {
+}
+
+section {
+  margin-left: 2em;
+}
+
+.pagebreak-before {
+  page-break-before: always;
+}
+
+.container {
+  display: grid;
+  grid-auto-columns: 200px;
+  grid-auto-flow: column;
+}
+
+.container > * {
+  align-self: center;
+}
+
+.cube {
+  background: url('./cube.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 150px;
+  width: 150px;
+  -webkit-print-color-adjust: exact;
+}
+
+.description {
+  grid-column-end: span 3;
+}
