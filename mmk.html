@@ -6004,6 +6004,15 @@ var $elm$core$List$unzip = function (pairs) {
 		_Utils_Tuple2(_List_Nil, _List_Nil),
 		pairs);
 };
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
 var $elm$core$Tuple$pair = F2(
 	function (a, b) {
 		return _Utils_Tuple2(a, b);
@@ -6018,11 +6027,19 @@ var $author$project$Mm$gradeGuess = F2(
 			A2($elm$core$List$filter, $author$project$Mm$pairNotEqual, z));
 		var unmatchedGuessElements = _v0.a;
 		var unmatchedSecretElements = _v0.b;
-		var correctColorsOutOfPosition = $elm$core$List$length(
-			A2(
-				$author$project$Mm$intersect,
-				A2($elm$core$List$map, $author$project$Mm$colorText, unmatchedGuessElements),
-				A2($elm$core$List$map, $author$project$Mm$colorText, unmatchedSecretElements)));
+		var ges = A2($elm$core$List$map, $author$project$Mm$colorText, unmatchedGuessElements);
+		var ses = A2($elm$core$List$map, $author$project$Mm$colorText, unmatchedSecretElements);
+		var correctColorsOutOfPosition = A2(
+			$elm$core$Maybe$withDefault,
+			0,
+			$elm$core$List$minimum(
+				_List_fromArray(
+					[
+						$elm$core$List$length(
+						A2($author$project$Mm$intersect, ses, ges)),
+						$elm$core$List$length(
+						A2($author$project$Mm$intersect, ges, ses))
+					])));
 		return _Utils_Tuple2(numMatching, correctColorsOutOfPosition);
 	});
 var $author$project$Main$matchPeg = A2(
