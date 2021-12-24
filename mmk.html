@@ -5927,55 +5927,126 @@ var $elm$core$List$filter = F2(
 			_List_Nil,
 			list);
 	});
-var $author$project$Mm$equal = F2(
+var $elm_community$list_extra$List$Extra$groupWhile = F2(
+	function (isSameGroup, items) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, acc) {
+					if (!acc.b) {
+						return _List_fromArray(
+							[
+								_Utils_Tuple2(x, _List_Nil)
+							]);
+					} else {
+						var _v1 = acc.a;
+						var y = _v1.a;
+						var restOfGroup = _v1.b;
+						var groups = acc.b;
+						return A2(isSameGroup, x, y) ? A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								x,
+								A2($elm$core$List$cons, y, restOfGroup)),
+							groups) : A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(x, _List_Nil),
+							acc);
+					}
+				}),
+			_List_Nil,
+			items);
+	});
+var $elm_community$list_extra$List$Extra$group = $elm_community$list_extra$List$Extra$groupWhile($elm$core$Basics$eq);
+var $elm$core$List$sortBy = _List_sortBy;
+var $elm$core$List$sort = function (xs) {
+	return A2($elm$core$List$sortBy, $elm$core$Basics$identity, xs);
+};
+var $author$project$Mm$Black = {$: 'Black'};
+var $author$project$Mm$textToColor = function (c) {
+	switch (c) {
+		case 'purple':
+			return $author$project$Mm$Purple;
+		case 'pink':
+			return $author$project$Mm$Pink;
+		case 'red':
+			return $author$project$Mm$Red;
+		case 'green':
+			return $author$project$Mm$Green;
+		case 'blue':
+			return $author$project$Mm$Blue;
+		case 'yellow':
+			return $author$project$Mm$Yellow;
+		case 'white':
+			return $author$project$Mm$White;
+		case 'black':
+			return $author$project$Mm$Black;
+		default:
+			return $author$project$Mm$White;
+	}
+};
+var $author$project$Mm$sortColors = function (colors) {
+	return A2(
+		$elm$core$List$map,
+		$author$project$Mm$textToColor,
+		$elm$core$List$sort(
+			A2($elm$core$List$map, $author$project$Mm$colorText, colors)));
+};
+var $author$project$Mm$colorReps = function (colors) {
+	return A2(
+		$elm$core$List$map,
+		function (_v0) {
+			var c = _v0.a;
+			var reps = _v0.b;
+			return _Utils_Tuple2(
+				c,
+				1 + $elm$core$List$length(reps));
+		},
+		$elm_community$list_extra$List$Extra$group(
+			$author$project$Mm$sortColors(colors)));
+};
+var $elm$core$List$concat = function (lists) {
+	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
+};
+var $elm$core$List$concatMap = F2(
+	function (f, list) {
+		return $elm$core$List$concat(
+			A2($elm$core$List$map, f, list));
+	});
+var $author$project$Mm$matchMinRep = F2(
+	function (_v0, _v1) {
+		var v1 = _v0.a;
+		var r1 = _v0.b;
+		var v2 = _v1.a;
+		var r2 = _v1.b;
+		return _Utils_eq(v1, v2) ? ((_Utils_cmp(r1, r2) < 0) ? _Utils_Tuple2(v1, r1) : _Utils_Tuple2(v1, r2)) : _Utils_Tuple2(v1, 0);
+	});
+var $author$project$Mm$repsToList = function (_v0) {
+	var foo = _v0.a;
+	var n = _v0.b;
+	return A2($elm$core$List$repeat, n, foo);
+};
+var $author$project$Mm$intersectColors = F2(
 	function (a, b) {
-		return _Utils_eq(a, b);
+		var bReps = $author$project$Mm$colorReps(b);
+		var aReps = $author$project$Mm$colorReps(a);
+		return A3(
+			$elm$core$List$foldl,
+			$elm$core$List$cons,
+			_List_Nil,
+			A2(
+				$elm$core$List$concatMap,
+				$author$project$Mm$repsToList,
+				A2(
+					$elm$core$List$concatMap,
+					function (rep) {
+						return A2(
+							$elm$core$List$map,
+							$author$project$Mm$matchMinRep(rep),
+							bReps);
+					},
+					aReps)));
 	});
-var $elm$core$List$any = F2(
-	function (isOkay, list) {
-		any:
-		while (true) {
-			if (!list.b) {
-				return false;
-			} else {
-				var x = list.a;
-				var xs = list.b;
-				if (isOkay(x)) {
-					return true;
-				} else {
-					var $temp$isOkay = isOkay,
-						$temp$list = xs;
-					isOkay = $temp$isOkay;
-					list = $temp$list;
-					continue any;
-				}
-			}
-		}
-	});
-var $author$project$Mm$intersectBy = F3(
-	function (comp, xs, ys) {
-		var checkMember = F2(
-			function (zs, m) {
-				return A2(
-					$elm$core$List$any,
-					comp(m),
-					zs);
-			});
-		var _v0 = _Utils_Tuple3(comp, xs, ys);
-		if (!_v0.b.b) {
-			return _List_Nil;
-		} else {
-			if (!_v0.c.b) {
-				return _List_Nil;
-			} else {
-				return A2(
-					$elm$core$List$filter,
-					checkMember(ys),
-					xs);
-			}
-		}
-	});
-var $author$project$Mm$intersect = $author$project$Mm$intersectBy($author$project$Mm$equal);
 var $author$project$Mm$pairEqual = function (_v0) {
 	var a = _v0.a;
 	var b = _v0.b;
@@ -6004,15 +6075,6 @@ var $elm$core$List$unzip = function (pairs) {
 		_Utils_Tuple2(_List_Nil, _List_Nil),
 		pairs);
 };
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
 var $elm$core$Tuple$pair = F2(
 	function (a, b) {
 		return _Utils_Tuple2(a, b);
@@ -6020,26 +6082,21 @@ var $elm$core$Tuple$pair = F2(
 var $elm_community$list_extra$List$Extra$zip = $elm$core$List$map2($elm$core$Tuple$pair);
 var $author$project$Mm$gradeGuess = F2(
 	function (secret, guess) {
-		var z = A2($elm_community$list_extra$List$Extra$zip, guess, secret);
+		var z = A2(
+			$elm_community$list_extra$List$Extra$zip,
+			A2($elm$core$List$map, $author$project$Mm$colorText, guess),
+			A2($elm$core$List$map, $author$project$Mm$colorText, secret));
 		var numMatching = $elm$core$List$length(
 			A2($elm$core$List$filter, $author$project$Mm$pairEqual, z));
 		var _v0 = $elm$core$List$unzip(
 			A2($elm$core$List$filter, $author$project$Mm$pairNotEqual, z));
 		var unmatchedGuessElements = _v0.a;
 		var unmatchedSecretElements = _v0.b;
-		var ges = A2($elm$core$List$map, $author$project$Mm$colorText, unmatchedGuessElements);
-		var ses = A2($elm$core$List$map, $author$project$Mm$colorText, unmatchedSecretElements);
-		var correctColorsOutOfPosition = A2(
-			$elm$core$Maybe$withDefault,
-			0,
-			$elm$core$List$minimum(
-				_List_fromArray(
-					[
-						$elm$core$List$length(
-						A2($author$project$Mm$intersect, ses, ges)),
-						$elm$core$List$length(
-						A2($author$project$Mm$intersect, ges, ses))
-					])));
+		var correctColorsOutOfPosition = $elm$core$List$length(
+			A2(
+				$author$project$Mm$intersectColors,
+				A2($elm$core$List$map, $author$project$Mm$textToColor, unmatchedGuessElements),
+				A2($elm$core$List$map, $author$project$Mm$textToColor, unmatchedSecretElements)));
 		return _Utils_Tuple2(numMatching, correctColorsOutOfPosition);
 	});
 var $author$project$Main$matchPeg = A2(
@@ -6180,7 +6237,8 @@ var $author$project$Main$showScore = function (gameScores) {
 				A2($elm$html$Html$Attributes$style, 'display', 'inline-block'),
 				A2($elm$html$Html$Attributes$style, 'position', 'absolute'),
 				A2($elm$html$Html$Attributes$style, 'right', '1em'),
-				A2($elm$html$Html$Attributes$style, 'top', '1em')
+				A2($elm$html$Html$Attributes$style, 'top', '1em'),
+				A2($elm$html$Html$Attributes$style, 'font-size', '0.8em')
 			]),
 		_List_fromArray(
 			[
@@ -6199,7 +6257,7 @@ var $author$project$Main$showScore = function (gameScores) {
 				_List_fromArray(
 					[
 						$elm$html$Html$text(
-						'avrg: ' + $elm$core$String$fromInt(
+						'average: ' + $elm$core$String$fromInt(
 							$author$project$Mm$averageScore(gameScores)))
 					])),
 				A2(
@@ -6208,7 +6266,7 @@ var $author$project$Main$showScore = function (gameScores) {
 				_List_fromArray(
 					[
 						$elm$html$Html$text(
-						'plyd: ' + $elm$core$String$fromInt(
+						'played: ' + $elm$core$String$fromInt(
 							$elm$core$List$length(gameScores)))
 					]))
 			]));
