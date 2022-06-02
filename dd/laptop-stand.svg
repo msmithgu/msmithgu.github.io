@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: dynamic design coded by Mark Smith-Guerrero -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="msg_svg_id" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="800px" height="800px" viewBox="0 0 100 100" xml:space="preserve">
+      <path
+    d="M 10 30 v -9 l 35.999336105 9 l 0.500009220934 -2 l 2 0.500009220934 v 11.4999907791 h -19.8746772734 v -7.22187355923 h -1.25 v 7.22187355923 h -17.3746680525 z"
+    fill="none"
+    stroke="red"
+    stroke-width=".1"
+    />
+
+   <path
+    d="M 10 50 v -9 l 17.3746680525 4.34374711846 v 7.53437932231 h 0.625 h 0.625 v -7.22187355923 l 17.3746680525 4.34374711846 l 0.500009220934 -2 l 2 0.500009220934 v 11.4999907791 h -38.4993453259 z"
+    fill="none"
+    stroke="blue"
+    stroke-width=".1"
+    />
+
+</svg>
