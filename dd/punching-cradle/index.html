@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Dynamic Design: Punching Cradle</title>
+  <link rel="stylesheet" type="text/css" href="../style.css" />
+</head>
+
+<body>
+  <section>
+    <div id="form-container">
+      <form id="design-gen-form">
+        <fieldset>
+          <legend>Dynamic Design: Punching Cradle</legend>
+          <div>
+            <label for="material_thickness">material_thickness</label>
+            <input type="text" id="material_thickness" name="material_thickness" value=".5" />
+          </div>
+          <div>
+            <label for="tolerance">tolerance</label>
+            <input type="text" id="tolerance" name="tolerance" value=".05" />
+          </div>
+          <div>
+            <label for="stroke_width">stroke_width</label>
+            <input type="text" id="stroke_width" name="stroke_width" value=".25" />
+          </div>
+          <div>
+            <label for="view_padding">view_padding</label>
+            <input type="text" id="view_padding" name="view_padding" value="1" />
+          </div>
+          <div>
+            <label></label>
+            <input type="submit" value="Generate SVG" />
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div id="svg-container">
+      <button id="export-svg-button">Export Generated SVG</button>
+    </div>
+  </section>
+  <script src="script.js"></script>
+</body>
+
+</html>
