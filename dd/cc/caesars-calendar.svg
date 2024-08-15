@@ -3,103 +3,76 @@
 <svg width="100%" height="100%" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" version="1.1">
 <title>CC</title>
 
-<style>
-text {
-  font-family: monospace;
-  font-size: 4px;
-  text-anchor: middle;
-}
+<!-- Date Text Etched -->
+<g title="etched-text" fill="green" font-family="monospace" font-size="4" text-anchor="middle">
+  <text x="115" y="27">Jan</text>
+  <text x="125" y="27">Feb</text>
+  <text x="135" y="27">Mar</text>
+  <text x="145" y="27">Apr</text>
+  <text x="155" y="27">May</text>
+  <text x="165" y="27">Jun</text>
 
-rect, path {
-  stroke-width: 0.1px;
-  stroke: black;
-  fill: transparent;
-}
+  <text x="115" y="37">Jul</text>
+  <text x="125" y="37">Aug</text>
+  <text x="135" y="37">Sep</text>
+  <text x="145" y="37">Oct</text>
+  <text x="155" y="37">Nov</text>
+  <text x="165" y="37">Dec</text>
 
-.cut {
-}
+  <text x="115" y="47">1</text>
+  <text x="125" y="47">2</text>
+  <text x="135" y="47">3</text>
+  <text x="145" y="47">4</text>
+  <text x="155" y="47">5</text>
+  <text x="165" y="47">6</text>
+  <text x="175" y="47">7</text>
 
-.etch text {
-  stroke-width: 0.1px;
-  stroke: #0f0;
-}
+  <text x="115" y="57">8</text>
+  <text x="125" y="57">9</text>
+  <text x="135" y="57">10</text>
+  <text x="145" y="57">11</text>
+  <text x="155" y="57">12</text>
+  <text x="165" y="57">13</text>
+  <text x="175" y="57">14</text>
 
-.back {
-  transform: translate(90px, 0px);
-}
+  <text x="115" y="67">15</text>
+  <text x="125" y="67">16</text>
+  <text x="135" y="67">17</text>
+  <text x="145" y="67">18</text>
+  <text x="155" y="67">19</text>
+  <text x="165" y="67">20</text>
+  <text x="175" y="67">21</text>
 
-</style>
+  <text x="115" y="77">22</text>
+  <text x="125" y="77">23</text>
+  <text x="135" y="77">24</text>
+  <text x="145" y="77">25</text>
+  <text x="155" y="77">26</text>
+  <text x="165" y="77">27</text>
+  <text x="175" y="77">28</text>
 
-<!-- Outmost edge -->
-<rect x="10" y="10" width="90" height="100" rx="5" class="front cut" />
-<rect x="10" y="10" width="90" height="100" rx="5" class="back cut" />
+  <text x="115" y="87">29</text>
+  <text x="125" y="87">30</text>
+  <text x="135" y="87">31</text>
+  <text x="145" y="87">Sun</text>
+  <text x="155" y="87">Mon</text>
+  <text x="165" y="87">Tue</text>
+  <text x="175" y="87">Wed</text>
 
-<!-- Containing edge -->
-<path d=" M 20 20 h 60 v 20 h 10 v 60 h -30 v -10 h -40 z " class="front cut" />
-
-<!-- Date Text (can't get a date honestly) -->
-<g class="etch back">
-  <text x="25" y="27">Jan</text>
-  <text x="35" y="27">Feb</text>
-  <text x="45" y="27">Mar</text>
-  <text x="55" y="27">Apr</text>
-  <text x="65" y="27">May</text>
-  <text x="75" y="27">Jun</text>
-
-  <text x="25" y="37">Jul</text>
-  <text x="35" y="37">Aug</text>
-  <text x="45" y="37">Sep</text>
-  <text x="55" y="37">Oct</text>
-  <text x="65" y="37">Nov</text>
-  <text x="75" y="37">Dec</text>
-
-  <text x="25" y="47">1</text>
-  <text x="35" y="47">2</text>
-  <text x="45" y="47">3</text>
-  <text x="55" y="47">4</text>
-  <text x="65" y="47">5</text>
-  <text x="75" y="47">6</text>
-  <text x="85" y="47">7</text>
-
-  <text x="25" y="57">8</text>
-  <text x="35" y="57">9</text>
-  <text x="45" y="57">10</text>
-  <text x="55" y="57">11</text>
-  <text x="65" y="57">12</text>
-  <text x="75" y="57">13</text>
-  <text x="85" y="57">14</text>
-
-  <text x="25" y="67">15</text>
-  <text x="35" y="67">16</text>
-  <text x="45" y="67">17</text>
-  <text x="55" y="67">18</text>
-  <text x="65" y="67">19</text>
-  <text x="75" y="67">20</text>
-  <text x="85" y="67">21</text>
-
-  <text x="25" y="77">22</text>
-  <text x="35" y="77">23</text>
-  <text x="45" y="77">24</text>
-  <text x="55" y="77">25</text>
-  <text x="65" y="77">26</text>
-  <text x="75" y="77">27</text>
-  <text x="85" y="77">28</text>
-
-  <text x="25" y="87">29</text>
-  <text x="35" y="87">30</text>
-  <text x="45" y="87">31</text>
-  <text x="55" y="87">Sun</text>
-  <text x="65" y="87">Mon</text>
-  <text x="75" y="87">Tue</text>
-  <text x="85" y="87">Wed</text>
-
-  <text x="65" y="97">Thu</text>
-  <text x="75" y="97">Fri</text>
-  <text x="85" y="97">Sat</text>
+  <text x="155" y="97">Thu</text>
+  <text x="165" y="97">Fri</text>
+  <text x="175" y="97">Sat</text>
 </g>
 
-<!-- Pieces -->
-<g class="front cut">
+<g title="cuts" fill="transparent" stroke="black" stroke-width="0.1">
+  <!-- Outmost edges -->
+  <rect x="10" y="10" width="90" height="100" rx="5" />
+  <rect x="100" y="10" width="90" height="100" rx="5" />
+
+  <!-- Containing edge -->
+  <path d=" M 20 20 h 60 v 20 h 10 v 60 h -30 v -10 h -40 z " />
+
+  <!-- Pieces -->
   <path d=" M 20 20 h 20 v 10 h -10 v 10 h 10 v 10 h -20 z " />
   <path d=" M 40 20 h 20 v 10 h -10 v 30 h -10 z " />
   <path d=" M 60 20 h 20 v 20 h 10 v 10 h -20 v -20 h -10 z " />
