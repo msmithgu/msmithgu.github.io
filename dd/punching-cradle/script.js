@@ -1,7 +1,12 @@
 var form = document.getElementById('design-gen-form');
 var svgContainer = document.getElementById('svg-container');
+var stroke_width = parseFloat(form.elements['stroke_width'].value);
+var view_padding = parseFloat(form.elements['view_padding'].value);
+var material_thickness = parseFloat(form.elements['material_thickness'].value);
+var tolerance = parseFloat(form.elements['tolerance'].value);
+var svg;
 
-const rect = (x1, y1, width, height) => {
+const rect0 = (x1, y1, width, height) => {
   const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
   p.setAttribute('d', [
     `M ${x1} ${y1}`,
@@ -15,47 +20,46 @@ const rect = (x1, y1, width, height) => {
   return p;
 };
 
+const rect = (x, y, width, height, rotation = 0) => {
+  const r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  r.setAttribute('x', x);
+  r.setAttribute('y', y);
+  r.setAttribute('width', width);
+  r.setAttribute('height', height);
+  r.setAttribute('transform', `rotate(${rotation})`);
+  r.setAttribute('fill', 'none');
+  r.setAttribute('stroke', 'red');
+  r.setAttribute('stroke-width', stroke_width);
+  svg.appendChild(r);
+};
+
 const redraw = () => {
   svgContainer.lastChild?.remove();
 
   // form values
-  const material_thickness = parseFloat(form.elements['material_thickness'].value);
-  const tolerance = parseFloat(form.elements['tolerance'].value);
-  const stroke_width = parseFloat(form.elements['stroke_width'].value);
-  const view_padding = parseFloat(form.elements['view_padding'].value);
+  material_thickness = parseFloat(form.elements['material_thickness'].value);
+  tolerance = parseFloat(form.elements['tolerance'].value);
+  stroke_width = parseFloat(form.elements['stroke_width'].value);
+  view_padding = parseFloat(form.elements['view_padding'].value);
+  const support_height = 80;
+  const support_width = 180;
+  const slat_width = 20;
+  const slat_length = 40;
+  const slat_thickness = 5;
 
   // computed values
-  const view_width = 100;
+  const view_width = 300;
   const view_height = 100;
 
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute('id', 'design-svg');
   svg.setAttribute("aria-hidden", "true");
   svg.setAttribute('viewBox', `0 0 ${view_width} ${view_height}`);
 
-  const r1 = rect(view_padding, view_padding, 20, 40);
-  r1.setAttribute('stroke', 'red');
-  r1.setAttribute('stroke-width', stroke_width);
-  svg.appendChild(r1);
-
-  const r2 = rect(view_padding, view_padding * 2 + 40, 20, 40);
-  r2.setAttribute('stroke', 'red');
-  r2.setAttribute('stroke-width', stroke_width);
-  svg.appendChild(r2);
-
-  const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  p.setAttribute('d', [
-    `M ${view_padding * 2 + 20} ${view_padding}`,
-    `v ${50}`,
-    // `l ${10} ${10}`,
-    `h ${40}`,
-    `v ${-50}`,
-    'z',
-  ].join(''));
-  p.setAttribute('fill', 'none');
-  p.setAttribute('stroke', 'blue');
-  p.setAttribute('stroke-width', stroke_width);
-  svg.appendChild(p);
+  // rear support
+  rect(view_padding, view_padding, support_width, support_height);
+  // left slit
+  rect(view_padding + support_width / 2, view_padding + support_height / 2, slat_width, slat_thickness, 30);
 
   svgContainer.appendChild(svg);
 };
