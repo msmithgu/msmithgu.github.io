@@ -1,19 +1,35 @@
 <!doctype html>
 <html>
-
 <head>
   <meta charset="UTF-8" />
-  <title>C's Calendar</title>
-  <style type="text/css">
-    body {
-      font-family: sans-serif;
-    }
-  </style>
+  <title>Dynamic Design: Calendar Puzzle</title>
+  <link rel="stylesheet" type="text/css" href="../style.css" />
 </head>
-
 <body>
-  <h1>Dynamic Designs</h1>
-  <ul>
-    <li><a href="./caesars-calendar.svg">CC Puzzle Solution Cut</a></li>
-  </ul>
+  <section>
+    <div id="form-container">
+      <form id="design-gen-form">
+        <fieldset>
+          <legend>Dynamic Design: Calendar Puzzle</legend>
+          <div>
+            <label for="split">split</label>
+            <input type="checkbox" id="split" name="split" checked />
+          </div>
+          <div>
+            <label for="stroke_width">stroke_width</label>
+            <input type="text" id="stroke_width" name="stroke_width" value="0.1" />
+          </div>
+          <div>
+            <label></label>
+            <input type="submit" value="Generate SVG" />
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div id="svg-container">
+      <button id="export-svg-button">Export Generated SVG</button>
+    </div>
+  </section>
+  <script src="script.js"></script>
 </body>
+</html>
