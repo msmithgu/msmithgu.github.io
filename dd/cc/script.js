@@ -134,21 +134,25 @@ const redraw = () => {
 
   // Pieces
 
-  [
-    ' M 15 15 h 20 v 10 h -10 v 10 h 10 v 10 h -20 z ',
-    ' M 35 15 h 20 v 10 h -10 v 30 h -10 z ',
-    ' M 55 15 h 20 v 20 h 10 v 10 h -20 v -20 h -10 z ',
-    ' M 45 25 h 20 v 20 h -10 v 10 h -10 z ',
-    ' M 15 45 h 10 v 10 h 20 v 10 h -20 v 10 h -10 z ',
-    ' M 15 75 h 10 v -10 h 20 v 10 h -10 v 10 h -20 z ',
-    ' M 45 55 h 10 v 30 h -20 v -10 h 10 z ',
-    ' M 55 45 h 30 v 30 h -10 v -20 h -20 z ',
-    ' M 55 55 h 10 v 40 h -10 z ',
-    ' M 65 55 h 10 v 20 h 10 v 20 h -10 v -10 h -10 z ',
-  ].map(path => {
-    const piece = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-    piece.setAttribute('d', path);
-    cut.appendChild(piece);
+  const optimized_paths = [
+    ' M 45 15 v 10 h -20 v 20 h -10 ',
+    ' M 35 25 v 10 h 10 v 20 h -10 v -10 h -10 ',
+    ' M 45 55 h 10 v 10 h -30 v -10 h -10 ',
+    ' M 45 65 v 10 h -30 ',
+    ' M 55 65 v 10 h -10 ',
+    ' M 55 75 v 10 ',
+    ' M 55 55 h 20 v 10 h -10 v 30 ',
+    ' M 85 75 h -10 v 10 h 10 ',
+    ' M 85 65 h -10 ',
+    ' M 65 55 v -20 h 10 ',
+    ' M 65 35 v -10 h 10 ',
+    ' M 65 45 h -10 v -20 h -10 ',
+  ];
+
+  optimized_paths.map(path => {
+    const p = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+    p.setAttribute('d', path);
+    cut.appendChild(p);
   });
 
   svg.appendChild(etch);
