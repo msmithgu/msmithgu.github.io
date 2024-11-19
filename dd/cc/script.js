@@ -26,11 +26,6 @@ const redraw = () => {
   // Etch Group
 
   var etch = document.createElementNS("http://www.w3.org/2000/svg", 'g');
-  etch.setAttribute('font-family', 'monospace');
-  etch.setAttribute('fill', 'blue');
-  etch.setAttribute('stroke', 'blue');
-  etch.setAttribute('stroke-width', stroke_width);
-  etch.setAttribute('text-anchor', 'middle');
 
   // Date Text
 
@@ -92,6 +87,11 @@ const redraw = () => {
     txt.setAttribute('x', t.x + offset);
     txt.setAttribute('y', t.y);
     txt.setAttribute('font-size', font_size);
+    txt.setAttribute('font-family', 'monospace');
+    txt.setAttribute('fill', 'blue');
+    txt.setAttribute('stroke', 'blue');
+    txt.setAttribute('stroke-width', stroke_width);
+    txt.setAttribute('text-anchor', 'middle');
     etch.appendChild(txt);
   });
 
